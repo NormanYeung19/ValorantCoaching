@@ -1,6 +1,32 @@
+// pages/coaches.js
+import React, { useEffect, useState } from 'react';
+import { fetchCoaches } from '../services/coachService';
+
 function CoachesList() {
-    return <div>List of Valorant Coaches</div>;
-  }
-  
-  export default CoachesList;
-  
+  const [coaches, setCoaches] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    async function loadCoaches() {
+      const { coaches, error } = await fetchCoaches();
+      if (error) setError(error.message);
+      else setCoaches(coaches);
+    }
+
+    loadCoaches();
+  }, []);
+
+  return (
+    <div>
+      <h1>Coaches List</h1>
+      {error && <p>Error: {error}</p>}
+      <ul>
+        {coaches.map(coach => (
+          <li key={coach.id}>{coach.full_name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default CoachesList;
