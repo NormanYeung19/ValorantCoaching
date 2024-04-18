@@ -1,5 +1,5 @@
 // services/coachService.js
-import { supabase } from '../utils/supabaseClient';
+import supabase from '../utils/supabaseClient';
 
 export async function addCoach(data) {
   const { data: coach, error } = await supabase
@@ -10,7 +10,7 @@ export async function addCoach(data) {
 
 export async function fetchCoaches() {
   const { data: coaches, error } = await supabase
-    .from(supabase)
+    .from('coaches')
     .select('*');
   return { coaches, error };
 }
