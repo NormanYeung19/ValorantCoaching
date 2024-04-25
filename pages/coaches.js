@@ -1,5 +1,6 @@
 // pages/coaches.js
 import React, { useEffect, useState } from 'react';
+import CoachCard from '../components/CoachCard'; // This is the correct import path based on your project structure
 import { fetchCoaches } from '../services/coachService';
 
 function CoachesList() {
