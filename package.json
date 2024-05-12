@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.42.4",
+    "@supabase/ui": "^0.36.5",
     "autoprefixer": "^10.4.19",
+    "classnames": "^2.5.1",
     "next": "^14.2.2",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
