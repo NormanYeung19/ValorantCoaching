@@ -11,9 +11,10 @@ export async function addCoach(data) {
 export async function fetchCoaches() {
   const { data: coaches, error } = await supabase
     .from('coaches')
-    .select('*');
+    .select(`*, game:game_id (*)`);
   return { coaches, error };
 }
+
 
 export async function updateCoach(id, updatedInfo) {
   const { data: updated, error } = await supabase

@@ -11,6 +11,7 @@ export default function CoachCard({ coach }) {
           <p className="text-base">
             Hourly Rate: ${coach.hourly_rate}
           </p>
+          <p>Game: {coach.game.name}</p>  {/* Displaying the game name */}
         </div>
       </div>
     );
