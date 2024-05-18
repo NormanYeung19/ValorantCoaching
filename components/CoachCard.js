@@ -1,19 +1,18 @@
 // components/CoachCard.js
-export default function CoachCard({ coach }) {
-    // Use a fixed color for the example, or you can modify this to use a color based on the coach data
-    return (
-        <div className="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden">
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{coach.name}</div>
-          <p className="text-base">
-            Specialty: {coach.specialty}
-          </p>
-          <p className="text-base">
-            Hourly Rate: ${coach.hourly_rate}
-          </p>
-          <p>Game: {coach.game.name}</p>  {/* Displaying the game name */}
-        </div>
-      </div>
-    );
-  }
-  
+import Link from 'next/link';
+
+const CoachCard = ({ coach }) => {
+  return (
+    <div className="bg-gray-800 text-white p-4 rounded-md shadow-md mb-4">
+      <h2 className="text-xl font-semibold">{coach.name}</h2>
+      <p>Specialty: {coach.specialty}</p>
+      <p>Hourly Rate: ${coach.hourly_rate}</p>
+      <p>Game: {coach.game}</p>
+      <Link href={`/coaches/${coach.id}`} legacyBehavior>
+        <a className="text-blue-500 mt-2 inline-block">View Profile</a>
+      </Link>
+    </div>
+  );
+};
+
+export default CoachCard;

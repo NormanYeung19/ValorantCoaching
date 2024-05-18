@@ -1,8 +1,7 @@
-// pages/index.js
 import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import supabase from '../utils/supabaseClient';
-import CoachCard from '../components/CoachCard';
+import Link from 'next/link';
 
 export default function HomePage() {
   const [coaches, setCoaches] = useState([]);
@@ -34,7 +33,7 @@ export default function HomePage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Welcome to the Esports Coaching Homepage!</h1>
+      <h1 className="text-2xl font-bold mb-4">Welcome to the Valorant Coaching Homepage!</h1>
       <div className="flex mb-4">
         <input
           type="text"
@@ -47,13 +46,22 @@ export default function HomePage() {
           <FaSearch />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <ul className="bg-white rounded-md shadow-md p-4">
         {filteredCoaches.length > 0 ? (
-          filteredCoaches.map(coach => <CoachCard key={coach.id} coach={coach} />)
+          filteredCoaches.map(coach => (
+            <li key={coach.id} className="mb-2">
+              <Link href={`/coaches/${coach.id}`} legacyBehavior>
+                <a className="text-blue-500 font-semibold">{coach.name}</a>
+              </Link>
+              <p>Specialty: {coach.specialty}</p>
+              <p>Hourly Rate: ${coach.hourly_rate}</p>
+              <p>Game: {coach.game}</p>
+            </li>
+          ))
         ) : (
           <p>No coaches found.</p>
         )}
-      </div>
+      </ul>
     </div>
   );
 }
